@@ -1,0 +1,22 @@
+@import "tailwindcss";
+
+#root {
+  padding: 50px 0px;
+  width: 50vw;
+  margin: 0 auto;
+}
+html {
+  background-color: #000;
+}
+
+input {
+  width: 100%;
+}
+
+ul li button {
+  width: 36px;
+  height: 36px;
+  bottom: 8px;
+  padding: 0px 12px;
+  font-size: 23px;
+}
