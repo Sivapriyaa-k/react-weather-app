@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-
 export default function Weather() {
+  const apiKey = import.meta.env.VITE_WEATHER_API_KEY;
   const [city, setCity] = useState("");
   const [report, setReport] = useState(null);
   const [error, setError] = useState("");
@@ -16,7 +16,7 @@ export default function Weather() {
     setLoading(true);
     try {
       const response = await fetch(
-        `https://api.weatherapi.com/v1/current.json?key=8d97f96e75e442eba17102616260308&q=${city}`,
+        `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}`,
       );
 
       const data = await response.json();
