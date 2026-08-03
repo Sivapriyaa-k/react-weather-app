@@ -7,12 +7,13 @@ export default function Weather() {
   const [loading, setLoading] = useState(false);
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);
+    setReport(null);
     if (city.trim() === "") {
       setError("Please Enter City");
       return;
     }
 
+    setLoading(true);
     try {
       const response = await fetch(
         `https://api.weatherapi.com/v1/current.json?key=8d97f96e75e442eba17102616260308&q=${city}`,
@@ -21,18 +22,14 @@ export default function Weather() {
       const data = await response.json();
 
       if (data.error) {
-        console.log(data);
         setError(data.error.message);
         setReport(null);
         return;
       }
       setError("");
       setReport(data);
-
-      console.log(report);
     } catch (error) {
       setError("Invalid City");
-      console.log(error);
     } finally {
       setLoading(false);
     }
@@ -68,23 +65,25 @@ export default function Weather() {
       </div>
       {loading && (
         <div className="flex justify-center mt-6">
-          <div className="w-12 h-12 border-4 border-amber-300 border-t-transparent rounded-full animate-spin"></div>
+          <div className="w-10 h-10 border-4 border-amber-300 border-t-transparent rounded-full animate-spin"></div>
         </div>
       )}
       {report ? (
         <div className="text-center mt-4">
-          <h3 className="text-amber-500  font-bold text-xl">
+          <h3 className="text-amber-500  font-bold text-2xl">
             Weather Report for {report.location.name}
           </h3>
-          <p className="text-white">
-            HUMIDITY: <span>{report.current.humidity}</span>
-          </p>
-          <p className="text-white transform-upper">
-            Temperature: <span>{report.current.temp_c}°C</span>
-          </p>
-          <p className="text-white transform-upper">
-            Condition: <span>{report.current.condition.text}</span>
-          </p>
+          <div className="weatherContainer mt-4">
+            <p className="text-white mb-2">
+              HUMIDITY: <span>{report.current.humidity}</span>
+            </p>
+            <p className="text-white  mb-2">
+              TEMPARATURE: <span>{report.current.temp_c}°C</span>
+            </p>
+            <p className="text-white  mb-2">
+              CONDITION: <span>{report.current.condition.text}</span>
+            </p>
+          </div>
         </div>
       ) : (
         ""
