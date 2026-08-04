@@ -83,7 +83,7 @@ export default function Weather() {
         </div>
       )}
       {report ? (
-        <div className="text-center mt-4">
+        <div className="weatherDetails text-center mt-4">
           <h3 className="text-amber-500  font-bold text-2xl">
             Weather Report for {report.location.name}
           </h3>
