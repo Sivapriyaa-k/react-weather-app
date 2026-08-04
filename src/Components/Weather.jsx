@@ -1,4 +1,8 @@
 import { useEffect, useState } from "react";
+// import { FaTeperature } from "react-icons/fa";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTemperatureThreeQuarters } from "@fortawesome/free-solid-svg-icons";
+
 export default function Weather() {
   const apiKey = import.meta.env.VITE_WEATHER_API_KEY;
   const [city, setCity] = useState("");
@@ -78,6 +82,7 @@ export default function Weather() {
               HUMIDITY: <span>{report.current.humidity}</span>
             </p>
             <p className="text-white  mb-2">
+              <FontAwesomeIcon icon={faTemperatureThreeQuarters} />
               TEMPARATURE: <span>{report.current.temp_c}°C</span>
             </p>
             <p className="text-white  mb-2">
